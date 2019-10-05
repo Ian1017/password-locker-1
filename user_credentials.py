@@ -1,4 +1,6 @@
 import string
+import pyperclip
+import random
 
 
 class User:
@@ -73,3 +75,10 @@ class Credentials:
                 return credential
 
         
+    @classmethod
+    def copy_credential(cls, password):
+        '''
+        Class method that copies a credentials details after the credentials site_name has been entered
+        '''
+        find_credential = Credentials.find_by_site_name(site_name)
+        return pyperclip.copy(find_credential.password)
