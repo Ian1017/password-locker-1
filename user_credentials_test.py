@@ -1,5 +1,5 @@
 import unittest
-from user_credentials import User
+from user_credentials import User, Credentials
 
 class TestUser(unittest.TestCase):
     '''
@@ -59,7 +59,7 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.account_name, "bryomajor")
         self.assertEqual(self.new_credential.password, "nairobi@13")
 
-        
+
 
 
 
