@@ -74,7 +74,7 @@ This application is developed using [Python3.6](https://www.python.org/doc/). Yo
 Brian Major
 
 
-[Brian Major](https://slack.com/intl/en-ke/)  @bryomajor
+[Slack Me!](https://slack.com/intl/en-ke/)  @bryomajor
 
 
 ### License
