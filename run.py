@@ -25,11 +25,11 @@ def verify_user(first_name, password):
     return checking_user
 
 
-def generate_password():
+def generate_password(self):
     '''
     Fucntioin that generates password.
     '''
-    gen_password = Credentials.generate_password()
+    gen_password = Credentials.generate_password(self)
     return gen_password
 
 
@@ -122,7 +122,7 @@ def main():
                                 password = input("Enter your password: ").strip()
                                 break
                             elif password_choice == 'gp':
-                                password = generate_password()
+                                password = generate_password(password)
                                 break
                             elif password_choice == 'ex':
                                 break
@@ -147,7 +147,7 @@ def main():
                     
                     elif short_code == 'cp':
                         print('\n')
-                        chosen_site = input("Enter the site name for the credential you want to copy:")
+                        chosen_site = input("Enter the site name for the credential you want to copy: ")
                         copy_credential(chosen_site)
                         print('\n')
                     else:
