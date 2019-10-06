@@ -39,9 +39,8 @@ As a user of the terminal application you will be able to:
 | Exit application | **Enter: ex** | Exit the current navigation stage |
 
 
-## Getting started
 
-## SetUp / Installation Requirements
+## Getting started
 ### Prerequisites
 * python3.6
 * pip
