@@ -21,10 +21,12 @@ As a user of the terminal application you will be able to:
 
 1. Create an account
 2. Log into your account
-3. Add credentials for different accounts.
+3. Add credentials for different accounts
 4. Store and generate passwords
 5. See a list of all your saved credentials
-6. Copy credentials to the clipboard
+6. Search for a saved credential
+7. Copy credentials to the clipboard
+8. Delete a saved credential
 
 ## Specifications
 | Behaviour | Input | Output |
