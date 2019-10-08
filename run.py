@@ -21,7 +21,7 @@ def verify_user(first_name, password):
     '''
     Function that verifies if user exists.
     '''
-    checking_user = Credentials.check_user(first_name, password)
+    checking_user = User.check_user(first_name, password)
     return checking_user
 
 
@@ -61,20 +61,43 @@ def copy_credential(site_name):
     '''
     return Credentials.copy_credential(site_name)
 
+
+def find_by_site(site_name):
+    '''
+    Function that searches for a site name.
+    '''
+    return Credentials.find_by_site_name(site_name)
+
+def delete_credential(credential):
+    '''
+    Function that deletes credentials by site name.
+    '''
+    credential.del_credential()
+
+def check_existing_credentials(site_name):
+    '''
+    Function that checks if a credential exists.
+    '''
+    return Credentials.credential_exist(site_name)
+
     
 def main():
     print('\n')
+
+    print("")
     print("Hello there! Welcome to Password Locker.")
     while True:
+        print("*"*60)
         print('\n')
-        print("-"*60)
         print("Use these codes to navigate: \n ca - Create an account \n li - Log in \n ex - Exit")
+        print('\n')
         short_code = input("Enter a choice: ").lower().strip()
 
         if short_code == 'ex':
             break
 
         elif short_code == 'ca':
+            print('\n')
             print("-"*60)
             print('\n')
             print("To create a new account:")
@@ -95,10 +118,10 @@ def main():
             if user_exists == user_name:
                 print('\n')
                 print(f"Welcome {user_name}. Please choose an option to continue.")
-                print('\n')
                 while True:
                     print("-"*60)
-                    print("Navigation codes: \n cc - To create a credential \n dc - To display credentials \n cp - To copy password \n ex - Exit")
+                    print("Navigation codes: \n cc - To create a credential \n dc - To display all credentials \n fc - To find a credential \n cp - To copy password \n del - To delete a credential \n ex - Exit")
+                    print('\n')
                     short_code = input('Enter a choice: ').lower().strip()
                     print("-"*60)
                     if short_code == 'ex':
@@ -109,7 +132,7 @@ def main():
                         print('\n')
                         print("Enter your credential details:")
                         site_name = input("Enter the site's name - ").strip()
-                        account_name = input("Enter your account's name - ").strip()
+                        account_name = input("Enter your account's username - ").strip()
 
                         while True:
                             print('\n')
@@ -130,40 +153,61 @@ def main():
                                 print("Bummer! You entered the wrong option. Please try again.")
                         save_credential(create_credential(user_name, site_name, account_name,password))
                         print('\n')
-                        print(f"Credential created: \n Site name: {site_name} - Account name: {account_name} - Password: {password}")
-                        print('\n')
+                        print(f"Credential created: \n Site name: {site_name} - Account Username: {account_name} - Password: {password}")
+
                     elif short_code == 'dc':
                         print('\n')
+
                         if display_credentials(user_name):
-                            print("Here is a list of all your creddentials")
+                            print("Here is a list of all your creddentials:")
                             print('\n')
                             for credential in display_credentials(user_name):
                                 print(f"Site name: {credential.site_name} - Account name: {credential.account_name} - Password: {credential.password}")
-                            print('\n')
                         else:
                             print('\n')
                             print("You don't seem to have any credential saved yet.")
                             print('\n')
+
+
+                    elif short_code == 'fc':
+                        search_site = input("Enter the site name you are searching for: \n")
+                        if check_existing_credentials(search_site):
+                            result = find_by_site(search_site)
+                            print(f"Search result: Site name: {result.site_name} - Account name: {result.account_name} - Password: {result.password}")
+                        else:
+                            print("No such credential exists. Please try again!")
                     
                     elif short_code == 'cp':
                         print('\n')
                         chosen_site = input("Enter the site name for the credential you want to copy: ")
                         copy_credential(chosen_site)
                         print('\n')
+                    elif short_code == 'del':
+                        print('\n')
+                        print("Enter the name of the site credential you want to delete.")
+                        print('\n')
+                        answer = input("Enter choice: ")
+
+                        if check_existing_credentials(answer):
+                            answer = find_by_site(answer)
+                            delete_credential(answer)
+                            print("Credentials successfully deleted!")
+
+                        else:
+                            ("No such credential exists!")
+                        
                     else:
                         print("Bummer! You entered the wrong option. Please try again.")
                 
                 else:
                     print('\n')
-                    print("Wrong details entered! Please try again or create an account.")
+                    print("Bummer! You entered the wrong details Please try again or create an account.")
 
             else:
                 print("-"*60)
                 print('\n')
-                print("Bummer! You entered the wrong details. Please try again.")
+                print("I really didn't get that. Please use the short codes.")
 
 
 if __name__ == '__main__':
     main()
-
-                
